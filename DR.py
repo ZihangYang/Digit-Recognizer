@@ -110,7 +110,6 @@ plt.show()
 # In[129]:
 
 
-# Not quite sure why we shuffle the data
 # shuffle before splitting into dev and training sets
 # np.random.shuffle(data)
 
@@ -239,56 +238,6 @@ db1 = dH1_pre
 '''
 
 
-# In[37]:
-
-
-# def ReLU_deriv(Z):
-#     return Z > 0
-
-# test = np.zeros((3, 1))
-# test[0] = [1]
-# test[1] = [1]
-# test[2] = [0]
-# print(test)
-
-
-# w2 = np.zeros((3, 3))
-# w2[0] = [1, 2, 3]
-# w2[1] = [4, 5, 6]
-# w2[2] = [7, 8, 9]
-# print(w2)
-
-
-# dz2 = np.zeros((3, 1))
-# dz2[0] = [1]
-# dz2[1] = [2]
-# dz2[2] = [3]
-# print(dz2)
-
-
-# In[38]:
-
-
-# print(ReLU_deriv(test))
-
-# print(w2.T.dot(dz2))
-
-# print(w2.T.dot(dz2) * ReLU_deriv(test))
-
-
-# In[ ]:
-
-
-# Parameter updates
-
-# k is learning rate
-
-# w1 = w1 - k * w1
-# b1 = b1 - k * b1
-# w2 = w2 - k * w2
-# b2 = b2 - k * b2
-
-
 # In[132]:
 
 
@@ -319,12 +268,6 @@ def digitizer(x):
     digitizer_result = np.zeros((10, 1))
     digitizer_result[x,0] = 1
     return digitizer_result
-
-# def one_hot(Y):
-#     one_hot_Y = np.zeros((Y.size, Y.max() + 1))
-#     one_hot_Y[np.arange(Y.size), Y] = 1
-#     one_hot_Y = one_hot_Y.T
-#     return one_hot_Y
 
 
 # In[133]:
@@ -443,6 +386,12 @@ print('This is the handwritten number')
 show_pixel_number(number_index, data)
 
 
+# In[ ]:
+
+
+# np.random.shuffle(data)
+
+
 # In[141]:
 
 
@@ -464,6 +413,18 @@ def get_accuracy(test_cycles, w1, b1, w2, b2, actual_number, pixels):
             accuracy = accuracy+1
     accuracy = accuracy/test_cycles*100
     return accuracy
+
+
+# In[ ]:
+
+
+# Shuffle it befire we test the accuracy
+
+# np.random.shuffle(data)
+# data_dev = data[0:10000].T
+# handwritten = data_dev[0]
+# pixels = data_dev[1:n]
+# pixels = pixels / 255.
 
 
 # In[143]:
