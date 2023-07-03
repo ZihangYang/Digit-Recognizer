@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # coding: utf-8
 
-# In[122]:
+# In[1]:
 
 
 import numpy as np
@@ -9,17 +9,17 @@ import pandas as pd
 from matplotlib import pyplot as plt
 
 
-# In[123]:
+# In[2]:
 
 
 # get the data out from csv file
-data = pd.read_csv('/Users/zihang/Desktop/Pico/MNIST/mnist_test.csv')
+data = pd.read_csv('/Users/zihang/Desktop/Pico/MNIST/mnist_train.csv')
 
 # test if we load it successfully
 # print(data)
 
 
-# In[124]:
+# In[3]:
 
 
 # make it to a multidimensional array, each 
@@ -30,7 +30,7 @@ m, n = data.shape
 print(m, n)
 
 
-# In[125]:
+# In[4]:
 
 
 # see whats inside
@@ -41,7 +41,7 @@ print(m, n)
 print(data[0:2])
 
 
-# In[126]:
+# In[5]:
 
 
 def show_pixel_number(sample, dataset):
@@ -69,52 +69,20 @@ def show_pixel_number(sample, dataset):
     plt.show()
 
 
-# In[127]:
+# In[6]:
 
 
 show_pixel_number(0, data)
 
 
-# In[128]:
-
-
-'''
-# pick a sample to plot, so we know we are on the right path
-# crate a 28*28 pixels image to plot, it is initialised as a 2D array with all elements 0
-sample_array = np.zeros((28, 28))
-
-# pick a sample, equals to the number of row
-sample = 4
-
-# then we put data into it
-for j in range(28):    
-    for i in range(28):
-        sample_array[j,i] = data[sample,j*28+i+1]
-
-# print it to compare with the csv file
-print(sample_array[7,6])
-
-# it is a multidimensional like this
-# image = np.array([[1, 2, 3],
-#                   [4, 5, 6],
-#                   [7, 8, 9]])
-image = sample_array
-
-# plot the sample
-fig = plt.figure
-plt.imshow(image, cmap='gray')
-plt.show()
-'''
-
-
-# In[129]:
+# In[7]:
 
 
 # shuffle before splitting into dev and training sets
 # np.random.shuffle(data)
 
 # make the transposed matrix
-data_dev = data[0:10000].T
+data_dev = data[0:60000].T
 # m_dev, n_dev = data_dev.shape
 # print(m_dev, n_dev)
 # print(data_dev)
@@ -136,21 +104,12 @@ column: pixels,              784 + 1
 .
 
 '''
-
-
-# In[130]:
-
-
 # 1000 units, which are handwritten numbers
 # 1*1000 matrix
 handwritten = data_dev[0]
 # print(handwritten)
 # print(handwritten.size)
 # print(handwritten.shape)
-
-
-# In[131]:
-
 
 # get the pixels, 784000 units, (1000 samples * 28*28)
 # 784*1000 matrix
@@ -199,7 +158,7 @@ w2 has to be a 10*10 matrix, b2 has to be a 10*1 matrix
 '''
 
 
-# In[ ]:
+# In[8]:
 
 
 '''
@@ -238,7 +197,7 @@ db1 = dH1_pre
 '''
 
 
-# In[132]:
+# In[9]:
 
 
 # weight and bias of layer 1 and second layer 2
@@ -270,7 +229,7 @@ def digitizer(x):
     return digitizer_result
 
 
-# In[133]:
+# In[31]:
 
 
 def forward_prop(w1, b1, w2, b2, X):
@@ -307,26 +266,18 @@ def update_params(w1, b1, w2, b2, dw1, db1, dw2, db2, k):
     return w1, b1, w2, b2
 
 
-# In[134]:
+# In[33]:
 
 
 # Now let's run it!
 
 
-# In[135]:
-
-
-w1, b1, w2, b2 = init_params()
-# print(w1, b1, w2, b2)
-
-
-# In[136]:
+# In[32]:
 
 
 # Functions for training the neural network
 def get_predictions(Y):
     return np.argmax(Y, 0)
-
 
 
 def training_oneloop(X, handwritten_number, w1, b1, w2, b2, k):
@@ -338,6 +289,7 @@ def training_oneloop(X, handwritten_number, w1, b1, w2, b2, k):
     
     return w1, b1, w2, b2
 
+
 def gradient_descent_training(iterations, pixels, handwritten, w1, b1, w2, b2, k):
     pixels_for_one_number = np.zeros((784, 1))
     # print(pixels_for_one_number.shape)
@@ -346,8 +298,9 @@ def gradient_descent_training(iterations, pixels, handwritten, w1, b1, w2, b2, k
     for i in range(iterations):
         for j in range(784):
             pixels_for_one_number[j,0] = pixels[j,i]
-        if i % 100 == 0:
-            print("Iteration: ", i)
+        # if i % 500 == 0:
+        #     print("Iteration: ", i)
+        
         # print(pixels_for_one_number.shape)
         # print(pixels_for_one_number)
         w1, b1, w2, b2 = training_oneloop(pixels_for_one_number, handwritten[i], w1, b1, w2, b2, k)
@@ -356,23 +309,30 @@ def gradient_descent_training(iterations, pixels, handwritten, w1, b1, w2, b2, k
     return w1, b1, w2, b2
 
 
-# In[137]:
+# In[12]:
 
 
 # Train it now!!!
 
 
-# In[138]:
+# In[47]:
 
 
-w1, b1, w2, b2 = gradient_descent_training(5000, pixels, handwritten, w1, b1, w2, b2, 0.1)
+w1, b1, w2, b2 = init_params()
+# print(w1, b1, w2, b2)
 
 
-# In[140]:
+# In[52]:
+
+
+w1, b1, w2, b2 = gradient_descent_training(60000, pixels, handwritten, w1, b1, w2, b2, 0.005)
+
+
+# In[49]:
 
 
 # pick a number from dataset
-number_index = 1
+number_index = 6
 
 pixels_for_test = np.zeros((784, 1))
 for i in range(784):
@@ -389,10 +349,10 @@ show_pixel_number(number_index, data)
 # In[ ]:
 
 
-# np.random.shuffle(data)
 
 
-# In[141]:
+
+# In[38]:
 
 
 def get_accuracy(test_cycles, w1, b1, w2, b2, actual_number, pixels):
@@ -415,22 +375,33 @@ def get_accuracy(test_cycles, w1, b1, w2, b2, actual_number, pixels):
     return accuracy
 
 
-# In[ ]:
-
-
-# Shuffle it befire we test the accuracy
-
-# np.random.shuffle(data)
-# data_dev = data[0:10000].T
-# handwritten = data_dev[0]
-# pixels = data_dev[1:n]
-# pixels = pixels / 255.
-
-
-# In[143]:
+# In[53]:
 
 
 print('The AI accuracy is:', get_accuracy(5000, w1, b1, w2, b2, handwritten, pixels), '%')
+
+
+# In[40]:
+
+
+# 
+test_data = pd.read_csv('/Users/zihang/Desktop/Pico/MNIST/mnist_test.csv')
+test_data = np.array(test_data)
+# Shuffle it befire we test the accuracy
+
+np.random.shuffle(test_data)
+
+test_accuracy_data = test_data[0:10000].T
+
+test_accuracy_handwritten = test_accuracy_data[0]
+test_accuracy_pixels = test_accuracy_data[1:n]
+test_accuracy_pixels = test_accuracy_pixels / 255.
+
+
+# In[54]:
+
+
+print('The AI accuracy is:', get_accuracy(5000, w1, b1, w2, b2, test_accuracy_handwritten, test_accuracy_pixels), '%')
 
 
 # In[ ]:
