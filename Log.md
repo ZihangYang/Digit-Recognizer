@@ -8,3 +8,6 @@ Increase the training dataset to 60000 samples (was 10000), but the accuracy is 
 
 2023/07/03 ZY
 By reducing the learning factor k, the AI recognition accuracy is increased to over 90%
+
+2023/07/05 ZY
+Added scripts for multiple layers and more neurons (multiple layers one isn't finished). The accuracy is increased to 95% by making the hidden layer's neurons from 10 to 100. I believe the multi-ayer one will be even better. If we have a neural network with 2 hidden-layer, and each layer has 100 neurons, could the accuracy be > 99% ?
