@@ -14,3 +14,6 @@ Added scripts for multiple layers and more neurons (multiple layers one isn't fi
 
 2023/07/05 ZY
 Add MicroPython code for Pico, and organise the folder
+
+2023/07/10 ZY
+Write a MicroPython library for Pico matrix multiplication
