@@ -11,8 +11,8 @@ def LED_blink(blink_times):
     while (blink_times-1) >= 0:
         blink_times -= 1
         led.high()
-        sleep(1)
+        sleep(0.5)
         led.low()
-        sleep(1)
+        sleep(0.5)
     
     return 1

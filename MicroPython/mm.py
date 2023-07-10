@@ -2,14 +2,26 @@
 # ZY
 
 # Standard Pico library
+import random
 
+# User defined library
 
 # generate a m*n empty matrix
-def generate_empty_matrix(m, n, value=0):
+def generate_empty_matrix(m, n, value=0.0):
 
     empty_matrix = [[value for _ in range(n)] for _ in range(m)]
     
     return empty_matrix
+
+# generate a m*n random matrix
+def generate_random_matrix(m, n, low_limit=0.0, high_limit=1.0):
+
+    random_matrix = generate_empty_matrix(m, n)
+    for i in range(m):
+        for j in range(n):
+            random_matrix[i][j] = random.uniform(low_limit, high_limit)
+    
+    return random_matrix
 
 # matrix multiplication
 def matrix_multiplication(m1,m2):

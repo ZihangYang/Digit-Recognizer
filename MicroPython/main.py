@@ -1,42 +1,27 @@
 # Standard Pico library
 from machine import Pin
 from time import sleep
+import random
 
 # User defined library
 import led_zy
-import mm
+import MM
+import NN
 
 # Code
-mtx1 = mm.generate_empty_matrix(2,4)
-mtx1[0][0] = 1
-mtx1[0][1] = 2
-mtx1[0][2] = 3
-mtx1[0][3] = 4
-mtx1[1][0] = 5
-mtx1[1][1] = 6
-mtx1[1][2] = 7
-mtx1[1][3] = 8
-print('This is matrix one:', mtx1)
 
-mtx2 = mm.generate_empty_matrix(4,1)
-mtx2[0][0] = 1
-mtx2[1][0] = 2
-mtx2[2][0] = 3
-mtx2[3][0] = 4
-print('This is matrix two:', mtx2)
+# w1, b1, w2, b2 = NN.init_params()
+# print(b1)
 
-mtx3 = mm.matrix_multiplication(mtx1, mtx2)
-print('This is dot product of m1 & m2:', mtx3)
+b1 = MM.generate_random_matrix(5, 1, -10, 10)
+print(b1)
+print(NN.softmax(b1))
 
 # Test code
 # print('hello')
 
-# Create a 2D list
-# my_list = [[1, 2, 3],
-#            [4, 5, 6],
-#            [7, 8, 9]]
-# my_list[1][2] = 10
-# print(my_list)
+# cycle = 0
+# cycle = int(input("Enter cycle: "))
 
 led_zy.LED_blink(2)
 

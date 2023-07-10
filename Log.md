@@ -12,8 +12,11 @@ By reducing the learning factor k, the AI recognition accuracy is increased to o
 2023/07/05 ZY
 Added scripts for multiple layers and more neurons (multiple layers one isn't finished). The accuracy is increased to 95% by making the hidden layer's neurons from 10 to 100. I believe the multi-ayer one will be even better. If we have a neural network with 2 hidden-layer, and each layer has 100 neurons, could the accuracy be > 99% ?
 
-2023/07/05 ZY
+2023/07/09 ZY
 Add MicroPython code for Pico, and organise the folder
 
 2023/07/10 ZY
 Write a MicroPython library for Pico matrix multiplication
+
+2023/07/11 ZY
+Can do matrix multiplication with float number now. Need to figure out how to do ReLU and Softmax funcation properly
