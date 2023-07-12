@@ -20,3 +20,6 @@ Write a MicroPython library for Pico matrix multiplication
 
 2023/07/11 ZY
 Can do matrix multiplication with float number now. Need to figure out how to do ReLU and Softmax funcation properly
+
+2023/07/12 ZY
+Add some code for driving segment display module, not finished
