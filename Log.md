@@ -23,3 +23,6 @@ Can do matrix multiplication with float number now. Need to figure out how to do
 
 2023/07/12 ZY
 Add some code for driving segment display module, not finished
+
+2023/07/14 ZY
+Finished the library for driving segment display module (TM1650)
