@@ -26,3 +26,6 @@ Add some code for driving segment display module, not finished
 
 2023/07/14 ZY
 Finished the library for driving segment display module (TM1650)
+
+2023/07/16 ZY
+Add some code for driving camera module (Mini 2MP)
